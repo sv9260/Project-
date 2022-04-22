@@ -1,0 +1,32 @@
+#include <stdio.h>
+#define min_pay 5.00
+
+float prev_read, cur_read, vol_used=0.00, total=0.00;
+
+int main()
+{
+    printf("Enter previous meter reading \n");
+    scanf("%f", &prev_read);
+     printf("Enter current meter reading \n");
+    scanf("%f", &cur_read);
+    
+    vol_used=cur_read- prev_read;
+    
+    while(vol_used>0){
+        if(vol_used>40){
+            total=total+1.05*(vol_used-40);
+            vol_used=40;
+        }
+        if(vol_used>15){
+            total=total+0.65*(vol_used-15);
+            vol_used=15;
+        }
+        if(vol_used<=15){
+            total=total+0.42*(vol_used);
+            vol_used=0;
+        }
+    }
+ printf("Amount due is $%f \n", total+min_pay);
+   
+    return 0;
+}
